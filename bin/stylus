@@ -711,6 +711,10 @@ function writeFile(file, css) {
   // --print support
   if (print) return process.stdout.write(css);
   var path = createPath(file);
+  // AR: add comment to info about generated file
+  var c1 = '/* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */\n';
+  var c2 = '/* !!!!!!!!!!!!!!! GENERATED FROM STYLUS - DO NOT MODIFY MANUALLY !!!!!!!!!!!!!!!!!!!! */\n';
+  css = c1 + c2 + c1 + '\n' + css + '\n' + c1 + c2 + c1;
   fs.writeFile(path, css, function(err){
     if (err) throw err;
     console.log('  \033[90mcompiled\033[0m %s', path);
